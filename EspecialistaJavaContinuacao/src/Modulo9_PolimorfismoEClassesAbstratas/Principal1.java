@@ -1,27 +1,23 @@
 package Modulo9_PolimorfismoEClassesAbstratas;
 
-import Modulo9_PolimorfismoEClassesAbstratas.com.algaworks.banco.Conta;
-import Modulo9_PolimorfismoEClassesAbstratas.com.algaworks.banco.ContaEspecial;
-import Modulo9_PolimorfismoEClassesAbstratas.com.algaworks.banco.Titular;
+import Modulo9_PolimorfismoEClassesAbstratas.com.algaworks.banco.*;
 
 public class Principal1 {
     public static void main(String[] args) {
+        CaixaEletronico caixaEletronico = new CaixaEletronico();
 
-        Titular titular = new Titular("João da Silva","00558963247");
-        ContaEspecial contaEspecial = new ContaEspecial(titular,1234,2544,10.00);
-        contaEspecial.setLimiteChequeEspecial(1000);
-        contaEspecial.depositar(100);
+       ContaEspecial conta1 = new ContaEspecial(new Titular("Marcio Costa","0014785878"),58,58789,90);
+       conta1.setLimiteChequeEspecial(1000);
+       conta1.depositar(300);
 
-        /*Realizando o upcasting que é atribuir o objeto instanciado a uma superclasse
-        * Passo 1  - Fazer o upcasting (Atribui o objeto conta especial a superclasse Conta)*/
+       ContaEspecial conta2 = new ContaEspecial(new Titular("Maria Dolores","22558963698"),58,58456,90);
 
-        Conta conta = (Conta) contaEspecial;
+        ContaSalario conta3 = new ContaSalario(new Titular("Vicente Almeida","55447789625"),60,23897);
 
-        System.out.println(contaEspecial.getClass().getName());/*O método getclass + o método getname retorna o nome da classe do
-        objeto que eu quero*/
-        System.out.println(conta.getClass().getName());
+       caixaEletronico.transferir(conta3,conta1,50.00);
+       conta1.imprimirDemonstrativo();
+       conta2.imprimirDemonstrativo();
 
-        System.out.println(conta == contaEspecial);
 
     }
 }
