@@ -14,30 +14,34 @@ public class CaixaEletronico {
 
     }
 
-    public void imrimirDemonstrativo(Conta conta) {
+    public void imprimirDemonstrativo(Conta conta){
+        if (conta.possuiGratuidadeDeImpressao()){
 
-        if (conta instanceof ContaInvestimento){
-            ContaInvestimento contaInvestimento = (ContaInvestimento) conta;/*Aqui é o que chamamos de downcasting que é quando queremos
+            System.out.println("A impressão do comprovante é gratuita");
+        }else {
+
+            debitarTarifaImpressaoDemonstrativo(conta);
+        }
+
+        conta.imprimirDemonstrativo();
+    }
+
+
+
+    private static void debitarTarifaImpressaoDemonstrativo(Conta conta) {
+        System.out.printf("Custo da impressão: R$%.2f%n", CaixaEletronico.TARIFA_IMPRESSAO_DEMONSTRATIVO);
+        conta.sacar(TARIFA_IMPRESSAO_DEMONSTRATIVO);
+    }
+
+
+
+    }
+
+    /*Aqui em cima no imprimirDemonstrativo é o que chamamos de downcasting que é quando queremos
         usar uma propriedade que não está na superclasse mas porém está em uma subclasse.Nesse caso será a propriedade
          valor total de rendimentos que está na subclasse ContaInvestimento mas não está na superclasse Conta (que está no parâmetro desse
          método).Tem que tomar cuidado pq conta salário é uma subclasse de Conta e não de Conta Investimento,então se formos usar
          esse método em uma instância de Conta salário vai lançar excessão.Para resolver isso usamos o instanceof*/
-            if (contaInvestimento.getValorTotalRendimento() > 0) {
-                System.out.println("Impressão do demonstrativo é gratuita!");
-            } else {
-               debitarTarifaImpressaoDemonstrativo(conta);
-        }
 
 
-        }
-        else {
-            debitarTarifaImpressaoDemonstrativo(conta);
-        }
-        conta.imprimirDemonstrativo();
-    }
 
-    private static void debitarTarifaImpressaoDemonstrativo(Conta conta) {
-        System.out.printf("Custo da impressão: R$%.2f%n", TARIFA_IMPRESSAO_DEMONSTRATIVO);
-        conta.sacar(TARIFA_IMPRESSAO_DEMONSTRATIVO);
-    }
-}

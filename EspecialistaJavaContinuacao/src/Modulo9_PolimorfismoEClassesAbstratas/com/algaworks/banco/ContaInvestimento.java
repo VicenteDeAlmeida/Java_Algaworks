@@ -13,6 +13,10 @@ public class ContaInvestimento extends Conta {
         return valorTotalRendimento;
     }
 
+    @Override
+    public boolean possuiGratuidadeDeImpressao() {
+        return getValorTotalRendimento() > 0;
+    }
 
     public void creditarRendimentos(double percentualJuros){
 

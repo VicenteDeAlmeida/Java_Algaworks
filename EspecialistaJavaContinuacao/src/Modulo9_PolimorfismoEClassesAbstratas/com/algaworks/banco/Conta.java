@@ -30,6 +30,10 @@ public class Conta {
     } /*Aqui eu coloco o final no saldo para que esse método não seja sobrescrito
     e o saldo somente possa ser alterado através de saques e depósitos*/
 
+    public boolean possuiGratuidadeDeImpressao(){
+        return false;
+    }
+
 
     protected void validarSaldoParaSaque(double valorSaque){
         if (getSaldo() < valorSaque){
