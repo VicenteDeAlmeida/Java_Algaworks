@@ -27,6 +27,10 @@ public class ExecutoraFinanceira {
         funcionario.calcularLimiteAprovado();
         servico.solicitarFinanciamento(funcionario,20000);
 
+        System.out.println(ClienteFinanciavel.isFinanciamentoPequenoValor(50_000));
+        System.out.println(ClienteFinanciavel.isFinanciamentoGrandeValor(50_000));
+
+
 
 
 
